@@ -1,0 +1,32 @@
+#!/bin/sh
+
+ipfw -q -f flush
+
+fw="ipfw -q add"
+
+${fw} allow all from any to any via lo0
+
+${fw} deny all from any to 127.0.0.0/8
+
+${fw} deny ip from 127.0.0.0/8 to any
+
+${fw} allow all from any to any frag
+
+${fw} deny ipv6 from any to any
+
+${fw} check-state
+
+${fw} allow all from me to any out keep-state
+
+${fw} allow tcp from any to me 22 setup keep-state
+
+${fw} allow tcp from any to me 80 setup keep-state
+
+${fw} allow tcp from any to me 443 setup keep-state
+
+# Allow traceroute to function
+${fw} unreach port udp from any to me 33435-33524
+
+${fw} allow icmp from any to any icmptypes 0,3,4,8,11
+
+${fw} deny all from any to any
