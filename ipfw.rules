@@ -29,4 +29,3 @@ ${fw} unreach port udp from any to me 33435-33524
 
 ${fw} allow icmp from any to any icmptypes 0,3,4,8,11
 
-${fw} deny all from any to any
