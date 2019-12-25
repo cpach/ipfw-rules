@@ -28,4 +28,3 @@ ${fw} allow tcp from any to me 443 setup keep-state
 ${fw} unreach port udp from any to me 33435-33524
 
 ${fw} allow icmp from any to any icmptypes 0,3,4,8,11
-
