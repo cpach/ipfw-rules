@@ -4,19 +4,19 @@ ipfw -q -f flush
 
 fw="ipfw -q add"
 
-${fw} allow all from any to any via lo0
+${fw} allow ip from any to any via lo0
 
-${fw} deny all from any to 127.0.0.0/8
+${fw} deny ip from any to 127.0.0.0/8
 
 ${fw} deny ip from 127.0.0.0/8 to any
 
-${fw} deny ipv6 from any to any
+${fw} deny ip6 from any to any
 
-${fw} allow all from any to any frag
+${fw} allow ip from any to any frag
 
 ${fw} check-state
 
-${fw} allow all from me to any out keep-state
+${fw} allow ip from me to any out keep-state
 
 ${fw} allow tcp from any to me 22 setup keep-state
 
