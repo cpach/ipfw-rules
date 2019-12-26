@@ -12,7 +12,7 @@ ${fw} deny ip from 127.0.0.0/8 to any
 
 ${fw} deny ip6 from any to any
 
-${fw} allow ip from any to any frag
+${fw} reass ip from any to any in
 
 ${fw} check-state
 
